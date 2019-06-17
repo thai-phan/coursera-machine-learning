@@ -30,7 +30,7 @@ clear ; close all; clc
 % Complete warmUpExercise.m
 fprintf('Running warmUpExercise ... \n');
 fprintf('5x5 Identity Matrix: \n');
-warmUpExercise()
+% warmUpExercise()
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -75,7 +75,7 @@ pause;
 
 fprintf('\nRunning Gradient Descent ...\n')
 % run gradient descent
-% theta = gradientDescent(X, y, theta, alpha, iterations);
+theta = gradientDescent(X, y, theta, alpha, iterations);
 
 % print theta to screen
 fprintf('Theta found by gradient descent:\n');
