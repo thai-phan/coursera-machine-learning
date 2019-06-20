@@ -53,7 +53,7 @@ pause;
 %  In this part of the exercise, you will implement the cost and gradient
 %  for logistic regression. You neeed to complete the code in 
 %  costFunction.m
-
+% prob = sigmoid([1,2,3;4,5,6]);
 %  Setup the data matrix appropriately, and add ones for the intercept term
 [m, n] = size(X);
 
