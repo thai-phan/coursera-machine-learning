@@ -25,19 +25,17 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
-sizeX = length(X);
-mu = mean(X);
-X_norm = X - mu;
+
+mu = mean(X_norm);
 sigma = std(X_norm);
-% sqrt((ones(1, sizeX) * (X_norm .^ 2))/sizeX)
-disp(mu)
-disp(sigma)
-disp(X_norm)
+X_norm = (X_norm - mu) ./ sigma;
 
-
-
-
-
+fprintf('mu:')
+disp(mu);
+fprintf('sigma:')
+disp(sigma);
+fprintf('x:')
+disp(X_norm);
 
 
 % ============================================================

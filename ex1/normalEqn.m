@@ -12,7 +12,19 @@ theta = zeros(size(X, 2), 1);
 
 % ---------------------- Sample Solution ----------------------
 
-
+theta = pinv(X' * X) * X' * y;
+A = X' * X
+B = A .^ -1
+C = inv(A)
+D = pinv(A)
+fprintf("A:\n")
+disp(A)
+fprintf("B:\n")
+disp(B)
+fprintf("C:\n")
+disp(C)
+fprintf("D:\n")
+disp(D)
 
 
 % -------------------------------------------------------------
