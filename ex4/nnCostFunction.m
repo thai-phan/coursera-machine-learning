@@ -61,15 +61,22 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+% X = [ones[X.size, 1] X]
+
+% J = sum(-1/m * ((y' * sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')) - sum(log(1+exp([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))))
+
+J = 1/m * sum((-y'-log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y')*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))
 
 
+% Theta1_grad
 
+% Theta2_grad
 
+% grad0 = (X(:, 1)' * (sigmoid(X*theta)-y))/m;
 
+% grad1toN = (X(:, 2:end)' * (sigmoid(X*theta)-y))/m + (lambda*(theta(2:end)))/m;
 
-
-
-
+% grad = [grad0; grad1toN]
 
 
 
