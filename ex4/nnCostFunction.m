@@ -64,8 +64,10 @@ Theta2_grad = zeros(size(Theta2));
 % X = [ones[X.size, 1] X]
 
 % J = sum(-1/m * ((y' * sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')) - sum(log(1+exp([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))))
+y_matrix = eye(num_labels)(y,:)
 
-J = 1/m * sum((-y'-log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y')*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))
+% n = ones(1,num_labels)
+J = 1/m * sum(sum((-y_matrix.*log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y_matrix).*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2'))))
 
 
 % Theta1_grad
