@@ -67,7 +67,14 @@ Theta2_grad = zeros(size(Theta2));
 y_matrix = eye(num_labels)(y,:)
 
 % n = ones(1,num_labels)
-J = 1/m * sum(sum((-y_matrix.*log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y_matrix).*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2'))))
+J0 = 1/m * sum(sum((-y_matrix.*log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y_matrix).*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2'))))
+
+Theta1(:, 1) = 0
+Theta2(:, 1) = 0
+
+J1 = (lambda/ (2*m)) * (sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2)))
+
+J = J0 + J1
 
 
 % Theta1_grad
