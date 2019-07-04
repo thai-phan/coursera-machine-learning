@@ -61,31 +61,45 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-% X = [ones[X.size, 1] X]
 
-% J = sum(-1/m * ((y' * sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')) - sum(log(1+exp([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))))
 y_matrix = eye(num_labels)(y,:)
 
 % n = ones(1,num_labels)
 J0 = 1/m * sum(sum((-y_matrix.*log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y_matrix).*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2'))))
 
+
+for i = 1:1
+    xi = X(i,:)
+    yi = y_matrix(i,:)
+    a2 = sigmoid([1, xi] * Theta1')
+    a3 = sigmoid([1, a2] * Theta2')
+    delta3 = a3 - yi
+    delta2 = Theta2' * delta3' .* a2 .* (1-a2)
+    delta2 = delta2(2: end)
+    Delta3 = delta2
+end
+
+
+
+
 Theta1(:, 1) = 0
 Theta2(:, 1) = 0
 
-J1 = (lambda/ (2*m)) * (sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2)))
 
+J1 = (lambda/ (2*m)) * (sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2)))
 J = J0 + J1
+
+
+
+
+
+
+
 
 
 % Theta1_grad
 
 % Theta2_grad
-
-% grad0 = (X(:, 1)' * (sigmoid(X*theta)-y))/m;
-
-% grad1toN = (X(:, 2:end)' * (sigmoid(X*theta)-y))/m + (lambda*(theta(2:end)))/m;
-
-% grad = [grad0; grad1toN]
 
 
 

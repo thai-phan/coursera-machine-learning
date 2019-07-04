@@ -14,7 +14,7 @@ g = zeros(size(z));
 
 
 
-g = sum(sum(sigmoid(z) * (1 - sigmoid(z))'))
+g = sigmoid(z) .* (1 - sigmoid(z))
 
 
 
