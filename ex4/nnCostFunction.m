@@ -68,20 +68,25 @@ y_matrix = eye(num_labels)(y,:)
 J0 = 1/m * sum(sum((-y_matrix.*log(sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2')))-(1-y_matrix).*log(1-sigmoid([ones(m ,1) sigmoid([ones(m, 1) X] * Theta1')] * Theta2'))))
 
 
-for i = 1:1
-    xi = X(i,:)
-    yi = y_matrix(i,:)
-    a2 = sigmoid([1, xi] * Theta1')
-    a3 = sigmoid([1, a2] * Theta2')
-    delta3 = a3 - yi
-    delta2 = Theta2' * delta3' .* a2 .* (1-a2)
-    delta2 = delta2(2: end)
-    Delta3 = delta2
-end
+% for i = 1:1
+%     xi = X(i,:)
+%     yi = y_matrix(i,:)
+    
 
-
-
-
+%     delta2 = Theta2' * delta3' .* a2 .* (1-a2)
+%     delta2 = delta2(2: end)
+%     Delta3 = delta2
+% end
+a2 = sigmoid([ones(m, 1) X] * Theta1') % 5x4 * 5x4' = 5x5
+a3 = sigmoid([ones(m, 1) a2] * Theta2') % 5x6 * 3x6' = 5x3
+delta3 = a3 - y_matrix % 5x3
+T2 = Theta2(:, 2:end) % 3x5
+delta2 = delta3 * T2 .* a2 .* (1-a2) % 555
+% delta2 = delta2(2: end)
+D1 = delta2' * [ones(m, 1) X]
+D2 = delta3' * [ones(m, 1) a2]
+Theta1_grad = D1 / m
+Theta2_grad = D2 / m
 Theta1(:, 1) = 0
 Theta2(:, 1) = 0
 
@@ -89,8 +94,8 @@ Theta2(:, 1) = 0
 J1 = (lambda/ (2*m)) * (sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2)))
 J = J0 + J1
 
-
-
+Theta1_grad = Theta1_grad + lambda/m * Theta1
+Theta2_grad = Theta2_grad + lambda/m * Theta2
 
 
 
