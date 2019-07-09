@@ -8,9 +8,9 @@
             "type": "OctaveDebugger",
             "request": "launch",
             "name": "machine-learning-coursera",
-            "program": "ex4",
+            "program": "ex5",
             "octave": "octave-cli",
-            "sourceFolder": "${workspaceFolder}/ex4",
+            "sourceFolder": "${workspaceFolder}/ex5",
             "workingDirectory": "",
             "prefetchCount": 1,
             "trace": true
