@@ -52,9 +52,23 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
+[r c] = size(yval)
 
 
-[theta] = trainLinearReg(X, y, lambda)
+
+
+for i = 1:m
+    x_i = X(1:i, :)
+    y_i = y(1:i)
+    xVal_i = Xval(1:i, :)
+    yVal_i = yval(1:i)
+    theta = trainLinearReg(x_i, y_i, lambda)
+    [error_train_i a] = linearRegCostFunction(x_i, y_i, theta, 0)
+    [error_val_i b] = linearRegCostFunction(Xval, yval, theta, 0)
+    error_train(i, :) = error_train_i
+    error_val(i, :) = error_val_i
+end
+
 
 
 
