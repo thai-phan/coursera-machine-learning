@@ -8,9 +8,9 @@
             "type": "OctaveDebugger",
             "request": "launch",
             "name": "machine-learning-coursera",
-            "program": "ex7",
+            "program": "ex8_cofi",
             "octave": "octave-cli",
-            "sourceFolder": "${workspaceFolder}/ex7",
+            "sourceFolder": "${workspaceFolder}/ex8",
             "workingDirectory": "",
             "prefetchCount": 1,
             "trace": true
